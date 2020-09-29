@@ -1,0 +1,302 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateModel",
+      "model": "FavoratiesOnAuthor"
+    },
+    {
+      "tag": "CreateField",
+      "model": "FavoratiesOnAuthor",
+      "field": "author",
+      "type": "Author",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "author"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "author"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[authorId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "author"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "FavoratiesOnAuthor",
+      "field": "authorId",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "authorId"
+        },
+        "directive": "map"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "authorId"
+        },
+        "directive": "map"
+      },
+      "argument": "",
+      "value": "\"author_id\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "FavoratiesOnAuthor",
+      "field": "article",
+      "type": "Article",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "article"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "article"
+        },
+        "directive": "relation"
+      },
+      "argument": "fields",
+      "value": "[articleId]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "article"
+        },
+        "directive": "relation"
+      },
+      "argument": "references",
+      "value": "[id]"
+    },
+    {
+      "tag": "CreateField",
+      "model": "FavoratiesOnAuthor",
+      "field": "articleId",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "articleId"
+        },
+        "directive": "map"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "articleId"
+        },
+        "directive": "map"
+      },
+      "argument": "",
+      "value": "\"article_id\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "FavoratiesOnAuthor",
+      "field": "createdAt",
+      "type": "DateTime",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "createdAt"
+        },
+        "directive": "default"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "createdAt"
+        },
+        "directive": "default"
+      },
+      "argument": "",
+      "value": "now()"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "createdAt"
+        },
+        "directive": "map"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "FavoratiesOnAuthor",
+          "field": "createdAt"
+        },
+        "directive": "map"
+      },
+      "argument": "",
+      "value": "\"created_at\""
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "FavoratiesOnAuthor"
+        },
+        "directive": "map"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Model",
+          "model": "FavoratiesOnAuthor"
+        },
+        "directive": "map"
+      },
+      "argument": "",
+      "value": "\"favorites_on_author\""
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Model",
+          "model": "FavoratiesOnAuthor"
+        },
+        "directive": "id"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Model",
+          "model": "FavoratiesOnAuthor"
+        },
+        "directive": "id"
+      },
+      "argument": "",
+      "value": "[authorId, articleId]"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Author",
+      "field": "favorites",
+      "type": "FavoratiesOnAuthor"
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Author",
+          "field": "favorites"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Article",
+      "field": "fans",
+      "type": "FavoratiesOnAuthor"
+    },
+    {
+      "tag": "DeleteDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Article",
+          "field": "fans"
+        },
+        "directive": "relation"
+      }
+    }
+  ]
+}

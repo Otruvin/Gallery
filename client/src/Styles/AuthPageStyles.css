@@ -1,0 +1,71 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.formInput {
+    overflow: hidden;
+    background: rgb(230,234,255);
+    background: radial-gradient(circle, rgba(230,234,255,1) 0%, rgba(255,255,255,1) 100%);
+    padding: 40px 30px 30px 30px;
+    border-radius: 15px;
+    width: 400px;
+    box-shadow: 5px 10px 10px #ffe5be;
+}
+
+button {
+    background-color: #aa4cd4;
+    border-radius: 10px;
+    display: inline;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-transform: uppercase;
+    border: 0;
+    padding: 10px 5px;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: 2px 3px 3px #ffe5be;
+    transition: box-shadow 0.5s;
+}
+
+button:active {
+    background-color: #ac6bce;
+}
+
+.inputs {
+    float: left;
+}
+
+.buttons {
+    float: left;
+}
+
+.registerButton {
+    margin-left: 20px;
+}
+
+input {
+    margin: 5px;
+    display: block;
+    width: 100%;
+    border: 0;
+    font-size: 16px;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+input:hover {
+    box-shadow: 2px 3px 3px #ffe5be;
+    transition: box-shadow 0.5s;
+}
+
+.toast {
+    height: 10px;
+    width: 200px;
+}

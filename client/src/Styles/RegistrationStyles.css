@@ -1,0 +1,29 @@
+.questionMarkImage {
+    height: 20px;
+    width: 20px;
+}
+
+.tooltipeText {
+    margin-left: 25%;
+    visibility: hidden;
+    position: absolute;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+.questionMarkImage:hover + .tooltipeText{
+    visibility: visible;
+}
+
+.inputDiv {
+    display: flex;
+}
+
+.password {
+    border-color: red;
+}
+
+#registerLoading {
+    margin-left: 50%;
+}

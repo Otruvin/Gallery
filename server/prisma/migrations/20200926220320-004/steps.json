@@ -1,0 +1,69 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Author",
+      "field": "favorites",
+      "type": "Article",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Author",
+          "field": "favorites"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Author",
+          "field": "favorites"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"FavoritiesRelashion\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "Article",
+      "field": "fans",
+      "type": "Author",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Article",
+          "field": "fans"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Article",
+          "field": "fans"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"FavoritiesRelashion\""
+    }
+  ]
+}
