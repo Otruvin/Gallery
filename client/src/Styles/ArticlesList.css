@@ -1,0 +1,16 @@
+.listArticles {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2vw;
+    height: 80%;
+    overflow-y: scroll;
+    margin-bottom: 10%;
+}
+
+.loadMoreButton {
+    height: 50%;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 25%;
+}

@@ -18,6 +18,10 @@ export const Header = () => {
         window.location.reload(false)
     }, [client])
 
+    const goAuthorArticlesPage = event => {
+        history.push('/authArticles')
+    }
+
     const goMain = event => {
         history.push('/gallery')
     }
@@ -50,6 +54,11 @@ export const Header = () => {
                         id="favoritesButton"
                         onClick={goFavorites}
                     >FAVORITES</button>
+                    <button
+                        className="headerButton authorArticlesButton"
+                        id="authorsArticles"
+                        onClick={goAuthorArticlesPage}
+                    >YOUR ARTICLES</button>
                     <button
                         className="headerButton logoutButton"
                         id="logoutButton"

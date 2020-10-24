@@ -1,11 +1,13 @@
-import { 
-    GraphQLObjectType, 
-    GraphQLNonNull, 
-    GraphQLString, 
-    GraphQLBoolean, 
-    GraphQLList, 
-    GraphQLSchema, 
-    GraphQLError} from 'graphql'
+import {
+    GraphQLObjectType,
+    GraphQLNonNull,
+    GraphQLString,
+    GraphQLBoolean,
+    GraphQLList,
+    GraphQLSchema,
+    GraphQLError, GraphQLInt
+} from 'graphql'
+import GraphQLDateTime from 'graphql-type-datetime'
 import {PrismaClient} from '@prisma/client'
 import bcrypt from 'bcryptjs'
 import Validator from 'password-validator'
@@ -75,7 +77,8 @@ const ArticleType = new GraphQLObjectType({
         theme: { type: GraphQLNonNull(GraphQLString) },
         content: { type: GraphQLString },
         published: { type: GraphQLBoolean },
-        updatedAt: { type: GraphQLNonNull(GraphQLString) },
+        updatedAt: { type: GraphQLNonNull(GraphQLDateTime) },
+        createdAt: { type: GraphQLNonNull(GraphQLDateTime) },
         image: { type: GraphQLNonNull(GraphQLString) },
         authorId: { type: GraphQLNonNull(GraphQLString) },
         fans: {
@@ -123,8 +126,8 @@ const CommentType = new GraphQLObjectType({
     fields: () => ({
         id: { type: GraphQLNonNull(GraphQLString) },
         text: { type: GraphQLNonNull(GraphQLString) },
-        createdAt: { type: GraphQLNonNull(GraphQLString) },
-        updatedAt: { type: GraphQLNonNull(GraphQLString) },
+        createdAt: { type: GraphQLNonNull(GraphQLDateTime) },
+        updatedAt: { type: GraphQLNonNull(GraphQLDateTime) },
         articleId: { type: GraphQLNonNull(GraphQLString) },
         authorId: { type: GraphQLNonNull(GraphQLString) },
         article: {
@@ -192,12 +195,93 @@ const RootQueryType = new GraphQLObjectType({
         articles: {
             type: GraphQLList(ArticleType),
             description: 'List of all articles',
-            resolve: async () => await prisma.article.findMany()
+            args: {
+                limit: { type: GraphQLNonNull(GraphQLInt) }
+            },
+            resolve: async (parent, args) => await prisma.article.findMany({
+                take: args.limit,
+                orderBy: {
+                    createdAt: "desc"
+                }
+            })
+        },
+        articlesByAuthor: {
+            type: GraphQLList(ArticleType),
+            description: 'List with articles from concrete author',
+            args: {
+                authorId: { type: GraphQLNonNull(GraphQLString) },
+                limit: { type: GraphQLNonNull(GraphQLInt) }
+            },
+            resolve: async (parent, args) => await prisma.article.findMany({
+                where: {
+                    authorId: args.authorId
+                },
+                take: args.limit,
+                orderBy: {
+                    createdAt: "desc"
+                }
+            })
         },
         comments: {
             type: GraphQLList(CommentType),
             description: 'List of all comments',
-            resolve: async () => await prisma.comment.findMany()
+            resolve: async () => await prisma.comment.findMany({
+                orderBy: {
+                    createdAt: "desc"
+                }
+            })
+        },
+        article: {
+            type: AuthorType,
+            description: 'Single author',
+            args: {
+                idArticle: { type: GraphQLNonNull(GraphQLString) }
+            },
+            resolve: async (parent, args) => await prisma.article.findOne({
+                where: {
+                    id: args.idArticle
+                }
+            })
+        },
+        articlesByCursor: {
+            type: new GraphQLList(ArticleType),
+            description: 'Take articles with pagination',
+            args: {
+                cursor: { type: GraphQLNonNull(GraphQLString) },
+                interval: { type: GraphQLNonNull(GraphQLInt) }
+            },
+            resolve: async (parent, args) => await prisma.article.findMany({
+                take: args.interval,
+                skip: 1,
+                cursor: {
+                    id: args.cursor
+                },
+                orderBy: {
+                    createdAt: "desc"
+                }
+            })
+        },
+        articlesFromAuthorByCursor: {
+            type: new GraphQLList(ArticleType),
+            description: 'Take articles from concrete author with cursor',
+            args: {
+                authorId: { type: GraphQLNonNull(GraphQLString) },
+                cursor: { type: GraphQLNonNull(GraphQLString) },
+                interval: { type: GraphQLNonNull(GraphQLInt) }
+            },
+            resolve: async (parent, args) => await prisma.article.findMany({
+                where: {
+                    authorId: args.authorId
+                },
+                take: args.interval,
+                skip: 1,
+                cursor: {
+                    id: args.cursor
+                },
+                orderBy: {
+                    createdAt: "desc"
+                }
+            })
         }
     })
 })
@@ -361,11 +445,18 @@ const RootMutationsType = new GraphQLObjectType({
             args: {
                 id: { type: GraphQLNonNull(GraphQLString) }
             },
-            resolve: async (parent, args) => await prisma.article.delete({
-                where: {
-                    id: args.id
-                }
-            })
+            resolve: async (parent, args) => {
+                await prisma.favoratiesOnAuthor.deleteMany({
+                    where: {
+                        articleId: args.id
+                    }
+                })
+                return await prisma.article.delete({
+                    where: {
+                        id: args.id
+                    }
+                })
+            }
         },
         updateComment: {
             type: CommentType,

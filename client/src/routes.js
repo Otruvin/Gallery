@@ -7,6 +7,7 @@ import {AuthPage} from "./pages/AuthPage";
 import {RegisterPage} from "./pages/RegisterPage";
 import {Header} from "./components/Header";
 import {FavoritePage} from "./pages/FavoritePage";
+import {AuthorArticles} from "./pages/AuthorArticles";
 
 export const useRoutes = isAuthenticated => {
     if(isAuthenticated) {
@@ -15,6 +16,10 @@ export const useRoutes = isAuthenticated => {
                 <Route path="/gallery" exact>
                     <Header />
                     <GalleryPage />
+                </Route>
+                <Route path="/authArticles" exact>
+                    <Header />
+                    <AuthorArticles />
                 </Route>
                 <Route path="/create" exact>
                     <Header />

@@ -1,0 +1,11 @@
+query getArticles($limit: Int!){
+    articles(limit: $limit) {
+        id,
+        theme,
+        image,
+        createdAt,
+        author {
+            name
+        }
+    }
+}

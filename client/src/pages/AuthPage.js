@@ -6,6 +6,7 @@ import {isAuthenticated, loginedUserId, token} from "../apollo/cache";
 import {toast, ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import {useHistory} from 'react-router-dom'
+import {Loader} from "../components/Loader";
 
 export const AuthPage = () => {
 
@@ -61,12 +62,8 @@ export const AuthPage = () => {
                     />
                 </div>
                 {
-                    loading ? <div className="lds-ring" id="registerLoading">
-                                <div />
-                                <div />
-                                <div />
-                                <div />
-                            </div> :
+                    loading ?
+                            <Loader /> :
                             <div className="buttons">
                                     <button className="loginButton" onClick={loginHandler}>Login</button>
                                     <button className="registerButton" onClick={registerHandler}>Register</button>

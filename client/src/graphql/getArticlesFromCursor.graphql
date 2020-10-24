@@ -1,0 +1,11 @@
+query getArticlesFromCursor($cursor: String!, $interval: Int!) {
+    articlesByCursor(cursor: $cursor, interval: $interval) {
+        id,
+        theme,
+        image,
+        createdAt,
+        author {
+            name
+        }
+    }
+}

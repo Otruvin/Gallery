@@ -1,0 +1,8 @@
+query getArticlesFromAuthor($authorId: String!, $limit: Int!) {
+    articlesByAuthor(authorId: $authorId, limit: $limit) {
+        id,
+        theme,
+        image,
+        createdAt
+    }
+}

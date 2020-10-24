@@ -5,6 +5,7 @@ import {useMutation} from "@apollo/client";
 import {loader} from "graphql.macro";
 import {toast, ToastContainer} from "react-toastify";
 import {useHistory} from 'react-router-dom'
+import {Loader} from "../components/Loader";
 
 export const RegisterPage = () => {
 
@@ -92,12 +93,8 @@ export const RegisterPage = () => {
                     </div>
                     <br />
                     {
-                        loading ? <div className="lds-ring" id="registerLoading">
-                            <div />
-                            <div />
-                            <div />
-                            <div />
-                        </div> :
+                        loading ?
+                            <Loader /> :
                             <button onClick={registrationHandler}>Registration new user</button>
                     }
                 </div>

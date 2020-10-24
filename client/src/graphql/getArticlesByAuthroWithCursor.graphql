@@ -1,0 +1,8 @@
+query getArticlesFromAuthorByCursor($authorId: String!, $cursor: String!, $interval: Int!) {
+    articlesFromAuthorByCursor(authorId: $authorId, cursor: $cursor, interval: $interval) {
+        id,
+        theme,
+        image,
+        createdAt
+    }
+}
